@@ -1,49 +1,48 @@
 import React,{ useState } from 'react';
 
 function Calculate() {
-
-    const [fistnumber,setFirstnumber] = useState('')
-    const [secondnumber,setSecondnumber] = useState('')
+// useState 함수로 만들어진 상태변수는 값이 바뀔 때마다
+// 모든 변수값이 새로 계산되고 그 값으로 재(re)렌더링 합니다. 
+// 단, 상태 변수는 이전 값(상태)는 유지됩니다. 
+    const [first,setFirst] = useState('')
+    const [second,setSecond] = useState('')
     const [result,setResult] = useState('')
 
-    console.log('값 =',fistnumber,secondnumber)
-    fistnumber = Number(fistnumber)
-    secondnumber = Number(secondnumber)
+    console.log('값 =',first,second)
 
-    const handleOk1 = () => {
-        setResult(`${fistnumber} + ${secondnumber} = ${add(fistnumber,secondnumber)}`)
-    }
-    const handleOk2 = () => {
-        setResult(fistnumber - secondnumber)
+    const handleAdd = () => {
+        setResult(Number(first) + Number(second))
      }
-     const handleOk3 = () => {
-        setResult(fistnumber * secondnumber)
+    const handleSub = () => {
+        setResult(first - second)
      }
-     const handleOk4 = () => {
-        setResult(fistnumber / secondnumber)
+    const handleMul = () => {
+        setResult(first * second)
+     }
+    const handleDiv = () => {
+        setResult(first / second)
      }
     
     return (
         <div>
             <h3>계산기</h3>
             <input type='number'
-            placeholder='첫번째 숫자를 입력하세요'
-            value={fistnumber}
-            onChange={(e) => setFirstnumber(e.target.value)}
+            placeholder='첫번째 숫자를 입력하세요.'
+            value={first}
+            onChange={(e) => setFirst(e.target.value)}
             />
 
-            <button onClick={handleOk1}>+</button>
-            <button onClick={handleOk2}>-</button>
-            <button onClick={handleOk3}>*</button>
-            <button onClick={handleOk4}>/</button>
+            <button onClick={handleAdd}>+</button>
+            <button onClick={handleSub}>-</button>
+            <button onClick={handleMul}>*</button>
+            <button onClick={handleDiv}>/</button>
 
              <input type='number'
-            placeholder='두번째 숫자를 입력하세요'
-            value={secondnumber}
-            onChange={(e) => setSecondnumber(e.target.value)}
+            placeholder='두번째 숫자를 입력하세요.'
+            value={second}
+            onChange={(e) => setSecond(e.target.value)}
             />
             <span>= {result}</span>
-            <hr/>
         </div>
     );
 }
